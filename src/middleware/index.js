@@ -1,6 +1,21 @@
 const bcrypt = require("bcrypt");
 const User = require("../user/userModel");
 
+exports.checkEmail = async (req, res, next) => {
+  try {
+    const regex = /.+\@.+\..+/;
+    const isInputValid = regex.test(req.body.email);
+    if (isInputValid) {
+      next();
+    } else {
+      res.status(400).send({ message: "Invalid email, try again" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Unsuccessfull, please try again" });
+  }
+}
+
 exports.hashPassword = async (req, res, next) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 8);
