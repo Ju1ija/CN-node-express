@@ -15,6 +15,10 @@ const movieSchema = new mongoose.Schema({
     type: Number,
     min: 0,
     max: 10
+  },
+  createdBy: {
+    type: String,
+    required: true
   }
 });
 

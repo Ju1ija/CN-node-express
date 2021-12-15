@@ -23,8 +23,8 @@ exports.listUsers = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    await User.findByIdAndUpdate(req.body._id, req.body);
-    const user = await User.findById(req.body._id);
+    await User.findByIdAndUpdate(req.params.userId, req.body);
+    const user = await User.findById(req.params.userId);
     res.status(200).send({ message: "Successfully updated user", user });
   } catch (error) {
     console.log(error);
@@ -33,8 +33,8 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findById(req.body._id);
-    await User.deleteOne({ _id: req.body._id });
+    const user = await User.findById(req.params.userId);
+    await User.deleteOne({ _id: req.params.userId });
     res.status(200).send({ message: "Successfully deleted user", user });
   } catch (error) {
     console.log(error);

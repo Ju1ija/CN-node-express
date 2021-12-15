@@ -8,7 +8,7 @@ exports.checkEmail = async (req, res, next) => {
     if (isInputValid) {
       next();
     } else {
-      res.status(400).send({ message: "Invalid email, try again" });
+      res.status(400).send({ message: "Invalid email address" });
     }
   } catch (error) {
     console.log(error);
